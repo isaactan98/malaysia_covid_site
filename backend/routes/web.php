@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+//API from MOH
+Route::get('/api/cases', [CaseController::class, 'index'], function () {
+    return response();
+});
+
+Route::get('/cases/state/all', function () {
+    return view('cases/states');
+});
+
+Route::get('/cases/state/{state}', function () {
+    return view();
 });

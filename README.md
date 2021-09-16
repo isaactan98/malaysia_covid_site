@@ -8,7 +8,7 @@ The purpose of this project is to develop a web on the Statistics of COVID-19 in
 
 Frontend
 
-<p align="center"><img src="https://nuxtjs.org/design-kit/colored-logo.svg" width="400"></p>
+<p align="center"><img src="https://nuxtjs.org/design-kit/colored-logo.svg" width="200"></p>
 
 Backend
 
