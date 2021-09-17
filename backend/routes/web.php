@@ -20,10 +20,10 @@ Route::get('/api/cases', [CaseController::class, 'index'], function () {
     return response();
 });
 
-Route::get('/cases/state/all', function () {
-    return view('cases/states');
+Route::get('/api/state', [CaseController::class, 'statesall'], function () {
+    return response();
 });
 
-Route::get('/cases/state/{state}', function () {
-    return view();
+Route::get('/api/state/{date}', [CaseController::class, 'filterdate'], function () {
+    return response();
 });

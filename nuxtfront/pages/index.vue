@@ -1,69 +1,47 @@
 <template>
-  <div class="container">
-    <p v-if="$fetchState.pending">Loading....</p>
-    <p v-else-if="$fetchState.error">
-      Error while fetching
-    </p>
-    <div class="container-fluid">
-      <div class="">
-        <h3 class="">
-          Covid Cases in Malaysia on {{ dataset[dataset.length - 1].date }}
-        </h3>
+  <main class="page">
+    <header class="header-page">
+      <div class="header__content" id="padding-scroll-content">
+        <h1 id="header-title">COVIDSTAT in Malaysia</h1>
+        <p>
+          The unofficial Malaysia government website for data and insights on
+          COVID-19.
+        </p>
+        <p>Last Update: {{ dataset[dataset.length - 1].date }}</p>
       </div>
-      <div class="border-t border-gray-200">
-        <dl>
-          <div
-            class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-          >
-            <dt class="text-sm font-medium text-gray-500">Date</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ dataset[dataset.length - 1].date }}
-            </dd>
-          </div>
-          <div
-            class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-          >
-            <dt class="text-sm font-medium text-gray-500">Today Case</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ dataset[dataset.length - 1].cases_new }}
-            </dd>
-          </div>
-          <div
-            class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-          >
-            <dt class="text-sm font-medium text-gray-500">Email address</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              margotfoster@example.com
-            </dd>
-          </div>
-          <div
-            class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-          >
-            <dt class="text-sm font-medium text-gray-500">
-              Salary expectation
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              $120,000
-            </dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </div>
+    </header>
+    <IndContent />
+    <IndStates />
+  </main>
 </template>
 
 <script>
+import IndContent from "~/components/IndContent.vue";
+import IndStates from "~/components/IndStates.vue";
 export default {
+  components: { IndContent, IndStates },
   data: () => ({
+    active: "docs",
     dataset: [],
   }),
   async fetch() {
-    this.dataset = await fetch('http://127.0.0.1:8000/api/cases').then((res) =>
+    this.dataset = await fetch("http://127.0.0.1:8000/api/cases").then((res) =>
       res.json()
-    )
+    );
   },
-}
+};
 </script>
 
 <style>
+@media screen and (max-width: 600px) {
+  .header__content {
+    height: auto !important;
+  }
+  .page {
+    padding-top: 50px !important;
+  }
+  .header-page {
+    position: relative !important;
+  }
+}
 </style>
