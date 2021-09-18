@@ -1,34 +1,33 @@
 <template>
   <header>
     <vs-navbar
-      target-scroll="#padding-scroll-content"
-      padding-scroll
-      center-collapsed
-      v-model="active"
-      fixed
       shadow-scroll
+      fixed
+      padding-scroll
+      right-collapsed
+      v-model="active"
     >
       <template #left>
         <vs-button @click="activeSidebar = !activeSidebar" flat icon>
-          <i class="bx bx-menu"></i>
+          <img
+            src="https://covidnow.moh.gov.my/_nuxt/img/jata.5baa949.png"
+            alt=""
+            width="42"
+            height="31.5"
+          />
         </vs-button>
-        <img
-          src="https://covidnow.moh.gov.my/_nuxt/img/jata.5baa949.png"
-          alt=""
-          width="42"
-          height="31.5"
-        />
       </template>
-      <vs-navbar-item :active="active == 'guide'" id="guide">
-        Home
-      </vs-navbar-item>
-      <vs-navbar-item :active="active == 'docs'" id="docs">
-        Documents
-      </vs-navbar-item>
-      <vs-navbar-item :active="active == 'components'" id="components">
-        Components
-      </vs-navbar-item>
-      <template #right> </template>
+      <template #right>
+        <vs-navbar-item :active="active == 'guide'" id="guide">
+          Home
+        </vs-navbar-item>
+        <vs-navbar-item :active="active == 'docs'" id="docs">
+          Documents
+        </vs-navbar-item>
+        <vs-navbar-item :active="active == 'components'" id="components">
+          Components
+        </vs-navbar-item>
+      </template>
     </vs-navbar>
 
     <!--  -->
@@ -64,12 +63,6 @@
               width="42"
               height="31.5"
             />
-          </vs-avatar>
-
-          <vs-avatar badge-color="danger" badge-position="top-right">
-            <i class="bx bx-bell"></i>
-
-            <template #badge> 28 </template>
           </vs-avatar>
         </vs-row>
       </template>

@@ -1,18 +1,18 @@
 <template>
-  <main class="page">
-    <header class="header-page">
-      <div class="header__content" id="padding-scroll-content">
-        <h1 id="header-title">COVIDSTAT in Malaysia</h1>
+  <div class="page">
+    <div class="header-page">
+      <div class="header__content">
+        <div class="head-title">COVIDSTAT in Malaysia</div>
         <p>
           The unofficial Malaysia government website for data and insights on
           COVID-19.
         </p>
         <p>Last Update: {{ dataset[dataset.length - 1].date }}</p>
       </div>
-    </header>
+    </div>
     <IndContent />
     <IndStates />
-  </main>
+  </div>
 </template>
 
 <script>
@@ -25,23 +25,36 @@ export default {
     dataset: [],
   }),
   async fetch() {
-    this.dataset = await fetch("http://127.0.0.1:8000/api/cases").then((res) =>
-      res.json()
-    );
+    this.dataset = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/cases"
+    ).then((res) => res.json());
   },
 };
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
-  .header__content {
-    height: auto !important;
-  }
-  .page {
-    padding-top: 50px !important;
-  }
-  .header-page {
-    position: relative !important;
-  }
+.page {
+  position: relative;
+  z-index: 0;
+  padding: 32px 16px;
+  max-width: 1104px;
+  margin: auto;
+  min-height: 400px;
+  overflow: auto;
+}
+.header-page {
+  display: grid;
+  margin-bottom: 0.5rem;
+  grid-column: 1/-1;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+}
+.header__content {
+  margin-top: 5rem;
+}
+.head-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 </style>

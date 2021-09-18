@@ -1,5 +1,5 @@
 <template>
-  <div class="center">
+  <div>
     <NavHead />
     <Nuxt />
     <FootVue />
@@ -22,8 +22,12 @@ export default {
     return {
       link: [
         {
+          rel: "preconnect",
+          href: "https://fonts.googleapis.com",
+        },
+        {
           rel: "stylesheet",
-          href: "https://vuesax.com/assets/css/0.styles.9c3c9a79.css",
+          href: "https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Open+Sans&display=swap",
         },
       ],
     };
@@ -39,4 +43,7 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: "Montserrat", sans-serif;
+}
 </style>
