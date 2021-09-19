@@ -27,3 +27,11 @@ Route::get('/api/state', [CaseController::class, 'statesall'], function () {
 Route::get('/api/state/{date}', [CaseController::class, 'filterdate'], function () {
     return response();
 });
+
+Route::get('/api/death', [CaseController::class, 'death'],  function () {
+    return response();
+});
+
+Route::get('/api/death/state/{date}', [CaseController::class, 'deathstate'],  function () {
+    return response();
+});

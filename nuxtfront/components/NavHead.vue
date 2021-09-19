@@ -8,7 +8,7 @@
       v-model="active"
     >
       <template #left>
-        <vs-button @click="activeSidebar = !activeSidebar" flat icon>
+        <vs-button @click="activeSidebar = !activeSidebar" shadow icon>
           <img
             src="https://covidnow.moh.gov.my/_nuxt/img/jata.5baa949.png"
             alt=""

@@ -1,8 +1,12 @@
 <template>
   <div class="feeds">
     <h3>Health News</h3>
-    <div class="feed-grid">
-      <article v-for="(news, index) in this.newfeed.articles" :key="index">
+    <p v-if="$fetchState.pending">Loading....</p>
+    <div class="feed-grid" v-else>
+      <article
+        v-for="(news, index) in this.newfeed.articles.slice(0, 7)"
+        :key="index"
+      >
         <a :href="news.url" target="_blank"></a>
         <figure v-if="news.urlToImage != null">
           <img :src="news.urlToImage" />
@@ -24,6 +28,12 @@ export default {
   data: () => ({
     newfeed: [],
   }),
+  activated() {
+    // Call fetch again if last fetch more than 30 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch();
+    }
+  },
   async fetch() {
     this.newfeed = await fetch(
       "https://newsapi.org/v2/top-headlines?country=my&category=health&apiKey=18f316a42c994279aa800f068e323dd9"

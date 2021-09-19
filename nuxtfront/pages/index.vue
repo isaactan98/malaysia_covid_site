@@ -7,7 +7,15 @@
           The unofficial Malaysia government website for data and insights on
           COVID-19.
         </p>
-        <p>Last Update: {{ dataset[dataset.length - 1].date }}</p>
+        <p v-if="$fetchState.pending">Loading....</p>
+        <p v-else>
+          Last Update: {{ dataset[dataset.length - 1].date }}
+          <span>
+            <vs-button @click="$fetch" color="dark" transparent>
+              <i class="fa">&#xf021;</i>
+            </vs-button>
+          </span>
+        </p>
       </div>
     </div>
     <IndContent />
@@ -24,6 +32,12 @@ export default {
     active: "docs",
     dataset: [],
   }),
+  activated() {
+    // Call fetch again if last fetch more than 30 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch();
+    }
+  },
   async fetch() {
     this.dataset = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/cases"
@@ -56,5 +70,19 @@ export default {
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.5rem;
+}
+span > button {
+  padding: 1px;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  line-height: inherit;
+  color: inherit;
+  border: rgba(209, 213, 219);
+  display: inline-block !important;
+}
+span > button > i {
+  display: block;
+  font-size: 18px;
+  color: #5f6368;
 }
 </style>

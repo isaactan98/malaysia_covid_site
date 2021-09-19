@@ -6,7 +6,8 @@
         <!-- 1st -->
         <div class="main-content">
           <h3>Malaysia</h3>
-          <div class="w-content">
+          <p v-if="$fetchState.pending">Loading....</p>
+          <div class="w-content" v-else>
             <div class="mb-16">
               <div class="d-grid">
                 <!-- New Cases -->
@@ -26,7 +27,9 @@
                 <!-- Death -->
                 <div class="c-content">
                   <div class="content-title">Death</div>
-                  <div class="content-text">-</div>
+                  <div class="content-text">
+                    {{ death[death.length - 1].deaths_new }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,10 +85,20 @@ export default {
   },
   data: () => ({
     dataset: [],
+    death: [],
   }),
+  activated() {
+    // Call fetch again if last fetch more than 30 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch();
+    }
+  },
   async fetch() {
     this.dataset = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/cases"
+    ).then((res) => res.json());
+    this.death = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/death"
     ).then((res) => res.json());
   },
 };

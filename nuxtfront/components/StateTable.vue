@@ -3,7 +3,8 @@
     <h3>States</h3>
     <div class="state-content">
       <div class="table-wrap">
-        <table>
+        <p v-if="$fetchState.pending">Loading....</p>
+        <table v-else>
           <thead>
             <tr>
               <td>State</td>
@@ -19,6 +20,7 @@
               <td>{{ states.cases_new }}</td>
               <td>{{ states.cases_import }}</td>
               <td>{{ states.cases_recovered }}</td>
+              <td>{{ death1[index].deaths_new }}</td>
             </tr>
           </tbody>
         </table>
@@ -38,6 +40,7 @@ export default {
   data: () => ({
     dataset: [],
     dataset1: [],
+    death1: [],
   }),
   methods: {
     handleClick() {},
@@ -46,8 +49,14 @@ export default {
     this.dataset = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/cases"
     ).then((res) => res.json());
+
     this.dataset1 = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/state/" +
+        this.dataset[this.dataset.length - 1].date
+    ).then((res) => res.json());
+
+    this.death1 = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/death/state/" +
         this.dataset[this.dataset.length - 1].date
     ).then((res) => res.json());
   },

@@ -29,6 +29,10 @@ export default {
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Open+Sans&display=swap",
         },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+        },
       ],
     };
   },
@@ -39,6 +43,17 @@ export default {
   data: () => ({
     active: "docs",
   }),
+  activated() {
+    // Call fetch again if last fetch more than 30 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch();
+    }
+  },
+  methods: {
+    refresh() {
+      this.$fetch();
+    },
+  },
 };
 </script>
 
