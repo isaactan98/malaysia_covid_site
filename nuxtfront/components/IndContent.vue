@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" keep-alive>
     <div class="grid100">
       <!-- left -->
       <div class="left-grid">
@@ -15,6 +15,17 @@
                   <div class="content-title">New Cases</div>
                   <div class="content-text">
                     {{ dataset[dataset.length - 1].cases_new }}
+                    <span
+                      v-if="
+                        dataset[dataset.length - 1].cases_new >
+                        dataset[dataset.length - 2].cases_new
+                      "
+                    >
+                      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                    </span>
+                    <span v-else>
+                      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                    </span>
                   </div>
                 </div>
                 <!-- Recovered -->
@@ -22,6 +33,17 @@
                   <div class="content-title">Recovered</div>
                   <div class="content-text">
                     {{ dataset[dataset.length - 1].cases_recovered }}
+                    <span
+                      v-if="
+                        dataset[dataset.length - 1].cases_recovered >
+                        dataset[dataset.length - 2].cases_recovered
+                      "
+                    >
+                      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                    </span>
+                    <span v-else>
+                      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                    </span>
                   </div>
                 </div>
                 <!-- Death -->
@@ -29,6 +51,17 @@
                   <div class="content-title">Death</div>
                   <div class="content-text">
                     {{ death[death.length - 1].deaths_new }}
+                    <span
+                      v-if="
+                        death[death.length - 1].deaths_new >
+                        death[death.length - 2].deaths_new
+                      "
+                    >
+                      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                    </span>
+                    <span v-else>
+                      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -93,6 +126,11 @@ export default {
       this.$fetch();
     }
   },
+  methods: {
+    refresh() {
+      this.$fetch();
+    },
+  },
   async fetch() {
     this.dataset = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/cases"
@@ -101,10 +139,17 @@ export default {
       "https://malaysia-covid-stat.herokuapp.com/api/death"
     ).then((res) => res.json());
   },
+  fetchOnServer: false,
 };
 </script>
 
 <style>
+.fa-angle-double-up {
+  color: rgba(249, 115, 22);
+}
+.fa-angle-double-down {
+  color: rgba(16, 185, 129);
+}
 .grid100 {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

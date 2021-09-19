@@ -1,5 +1,5 @@
 <template>
-  <div class="state-table">
+  <div class="state-table" keep-alive>
     <h3>States</h3>
     <div class="state-content">
       <div class="table-wrap">
@@ -44,6 +44,15 @@ export default {
   }),
   methods: {
     handleClick() {},
+    refresh() {
+      this.$fetch();
+    },
+  },
+  activated() {
+    // Call fetch again if last fetch more than 30 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch();
+    }
   },
   async fetch() {
     this.dataset = await fetch(
@@ -60,6 +69,7 @@ export default {
         this.dataset[this.dataset.length - 1].date
     ).then((res) => res.json());
   },
+  fetchOnServer: false,
 };
 </script>
 

@@ -7,11 +7,11 @@
           The unofficial Malaysia government website for data and insights on
           COVID-19.
         </p>
-        <p v-if="$fetchState.pending">Loading....</p>
-        <p v-else>
+        <p class="last-update" v-if="$fetchState.pending">Loading....</p>
+        <p class="last-update" v-else>
           Last Update: {{ dataset[dataset.length - 1].date }}
           <span>
-            <vs-button @click="$fetch" color="dark" transparent>
+            <vs-button @click="refresh" color="dark" transparent>
               <i class="fa">&#xf021;</i>
             </vs-button>
           </span>
@@ -38,11 +38,18 @@ export default {
       this.$fetch();
     }
   },
+  methods: {
+    refresh() {
+      this.$fetch();
+      // window.location.reload(true);
+    },
+  },
   async fetch() {
     this.dataset = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/cases"
     ).then((res) => res.json());
   },
+  fetchOnServer: false,
 };
 </script>
 
@@ -70,6 +77,10 @@ export default {
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.5rem;
+}
+.last-update {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 span > button {
   padding: 1px;

@@ -1,7 +1,9 @@
 <template>
   <div>
     <NavHead />
-    <Nuxt />
+    <keep-alive>
+      <Nuxt />
+    </keep-alive>
     <FootVue />
   </div>
 </template>
@@ -52,8 +54,28 @@ export default {
   methods: {
     refresh() {
       this.$fetch();
+      window.location.reload;
     },
   },
+  async fetch() {
+    this.dataset = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/cases"
+    ).then((res) => res.json());
+
+    this.dataset1 = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/state/" +
+        this.dataset[this.dataset.length - 1].date
+    ).then((res) => res.json());
+
+    this.death1 = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/death/state/" +
+        this.dataset[this.dataset.length - 1].date
+    ).then((res) => res.json());
+    this.newfeed = await fetch(
+      "https://newsapi.org/v2/top-headlines?country=my&category=health&apiKey=18f316a42c994279aa800f068e323dd9"
+    ).then((res) => res.json());
+  },
+  fetchOnServer: false,
 };
 </script>
 

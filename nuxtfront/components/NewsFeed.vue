@@ -1,22 +1,25 @@
 <template>
-  <div class="feeds">
+  <div class="feeds" keep-alive>
     <h3>Health News</h3>
     <p v-if="$fetchState.pending">Loading....</p>
+    <p v-else-if="$fetchState.error">
+      Error Loading... {{ $fetchState.error }}
+    </p>
     <div class="feed-grid" v-else>
       <article
-        v-for="(news, index) in this.newfeed.articles.slice(0, 7)"
+        v-for="(news, index) in this.newfeed.rss.channel.item.slice(0, 7)"
         :key="index"
       >
-        <a :href="news.url" target="_blank"></a>
-        <figure v-if="news.urlToImage != null">
-          <img :src="news.urlToImage" />
+        <a :href="news.link" target="_blank"></a>
+        <figure v-if="news.enclosure.$.url != null">
+          <img :src="news.enclosure.$.url" />
         </figure>
         <div class="feedtext">
-          <span>{{ news.source.name }}</span>
+          <span>The Star : News Feed</span>
         </div>
         <h4>{{ news.title }}</h4>
         <div class="feedtime">
-          <span>{{ news.publishedAt }}</span>
+          <span>{{ news.pubDate }}</span>
         </div>
       </article>
     </div>
@@ -34,11 +37,17 @@ export default {
       this.$fetch();
     }
   },
+  methods: {
+    refresh() {
+      this.$fetch();
+    },
+  },
   async fetch() {
     this.newfeed = await fetch(
-      "https://newsapi.org/v2/top-headlines?country=my&category=health&apiKey=18f316a42c994279aa800f068e323dd9"
+      "https://v1.nocodeapi.com/tyhisaac2/xml_to_json/RKCIAmhpuTcOwyrP?url=https://www.thestar.com.my/rss/News"
     ).then((res) => res.json());
   },
+  fetchOnServer: false,
 };
 </script>
 
