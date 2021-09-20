@@ -16,7 +16,18 @@
           </thead>
           <tbody>
             <tr v-for="(states, index) in dataset1" :key="index">
-              <td>{{ states.state }}</td>
+              <td>
+                <div class="statename">
+                  <img
+                    :src="
+                      'https://malaysia-covid-stat.herokuapp.com/api/' +
+                      states.state +
+                      '/flag'
+                    "
+                  />
+                  {{ states.state }}
+                </div>
+              </td>
               <td>{{ states.cases_new }}</td>
               <td>{{ states.cases_import }}</td>
               <td>{{ states.cases_recovered }}</td>
@@ -47,6 +58,7 @@ export default {
     refresh() {
       this.$fetch();
     },
+    stateFlag(state) {},
   },
   activated() {
     // Call fetch again if last fetch more than 30 sec ago
@@ -152,6 +164,19 @@ tbody > tr > td {
   font-size: 14px;
   font-weight: 700;
 }
+
+.statename {
+  display: flex;
+}
+
+.statename > img {
+  height: 11px;
+  width: 16px;
+  margin-right: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .state-foot {
   padding-top: 16px;
   line-height: 1.33;

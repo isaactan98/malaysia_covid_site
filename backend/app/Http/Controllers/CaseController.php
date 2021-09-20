@@ -177,8 +177,9 @@ class CaseController extends Controller
         $fileContents = str_replace(array("\n", "\r", "\t"), "", $fileContents);
         $file1 = trim(str_replace("<img src=\"", "", $fileContents));
         $file2 = trim(str_replace(".jpg\" />", ".jpg", $file1));
-        $file2 = trim(str_replace("&#039;", "'", $file2));
-        $json = simplexml_load_string($file2, "SimpleXMLElement", LIBXML_NOCDATA);
+        $file3 = trim(str_replace(".jpeg\" />", ".jpeg", $file2));
+        $file3 = trim(str_replace("&#039;", "'", $file3));
+        $json = simplexml_load_string($file3, "SimpleXMLElement", LIBXML_NOCDATA);
         $response = response(json_encode($json, JSON_PRETTY_PRINT), 200)->header('Content-Type', 'application/json');
         return $response;
         // print_r($json);

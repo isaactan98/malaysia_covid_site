@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CaseController;
+use App\Http\Controllers\StateFlagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +38,9 @@ Route::get('/api/death/state/{date}', [CaseController::class, 'deathstate'],  fu
 });
 
 Route::get('/api/news', [CaseController::class, 'newsfeed'], function () {
+    return response();
+});
+
+Route::get('/api/{state}/flag', [StateFlagController::class, 'stateflags'], function () {
     return response();
 });
