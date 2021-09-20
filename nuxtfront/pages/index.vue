@@ -41,7 +41,7 @@ export default {
   methods: {
     refresh() {
       this.$fetch();
-      // window.location.reload(true);
+      window.location.reload(true);
     },
   },
   async fetch() {

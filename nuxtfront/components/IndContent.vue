@@ -33,16 +33,20 @@
                   <div class="content-title">Recovered</div>
                   <div class="content-text">
                     {{ dataset[dataset.length - 1].cases_recovered }}
-                    <span
-                      v-if="
-                        dataset[dataset.length - 1].cases_recovered >
-                        dataset[dataset.length - 2].cases_recovered
-                      "
-                    >
-                      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-                    </span>
-                    <span v-else>
-                      <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                    <span>
+                      <i
+                        class="fa fa-angle-double-up good"
+                        aria-hidden="true"
+                        v-if="
+                          dataset[dataset.length - 1].cases_recovered >
+                          dataset[dataset.length - 2].cases_recovered
+                        "
+                      ></i>
+                      <i
+                        class="fa fa-angle-double-down bad"
+                        aria-hidden="true"
+                        v-else
+                      ></i>
                     </span>
                   </div>
                 </div>
@@ -144,11 +148,20 @@ export default {
 </script>
 
 <style>
+.fa {
+  font-size: 20px !important;
+}
 .fa-angle-double-up {
   color: rgba(249, 115, 22);
 }
 .fa-angle-double-down {
   color: rgba(16, 185, 129);
+}
+.good {
+  color: rgba(16, 185, 129) !important;
+}
+.bad {
+  color: rgba(249, 115, 22) !important;
 }
 .grid100 {
   display: grid;

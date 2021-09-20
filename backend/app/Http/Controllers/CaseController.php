@@ -169,4 +169,18 @@ class CaseController extends Controller
         $response = response(json_encode($filter, JSON_PRETTY_PRINT), 200)->header('Content-Type', 'application/json');
         return $response;
     }
+
+    public function newsfeed()
+    {
+        $url = "https://www.thestar.com.my/rss/News";
+        $fileContents = file_get_contents($url);
+        $fileContents = str_replace(array("\n", "\r", "\t"), "", $fileContents);
+        $file1 = trim(str_replace("<img src=\"", "", $fileContents));
+        $file2 = trim(str_replace(".jpg\" />", ".jpg", $file1));
+        $file2 = trim(str_replace("&#039;", "'", $file2));
+        $json = simplexml_load_string($file2, "SimpleXMLElement", LIBXML_NOCDATA);
+        $response = response(json_encode($json, JSON_PRETTY_PRINT), 200)->header('Content-Type', 'application/json');
+        return $response;
+        // print_r($json);
+    }
 }

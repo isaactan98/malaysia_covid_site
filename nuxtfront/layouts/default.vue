@@ -72,7 +72,7 @@ export default {
         this.dataset[this.dataset.length - 1].date
     ).then((res) => res.json());
     this.newfeed = await fetch(
-      "https://newsapi.org/v2/top-headlines?country=my&category=health&apiKey=18f316a42c994279aa800f068e323dd9"
+      "https://v1.nocodeapi.com/tyhisaac2/xml_to_json/RKCIAmhpuTcOwyrP?url=https://www.thestar.com.my/rss/News"
     ).then((res) => res.json());
   },
   fetchOnServer: false,

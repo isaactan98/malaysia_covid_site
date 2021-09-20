@@ -35,3 +35,7 @@ Route::get('/api/death', [CaseController::class, 'death'],  function () {
 Route::get('/api/death/state/{date}', [CaseController::class, 'deathstate'],  function () {
     return response();
 });
+
+Route::get('/api/news', [CaseController::class, 'newsfeed'], function () {
+    return response();
+});

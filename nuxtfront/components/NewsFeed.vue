@@ -1,18 +1,18 @@
 <template>
   <div class="feeds" keep-alive>
-    <h3>Health News</h3>
+    <h3>Top News</h3>
     <p v-if="$fetchState.pending">Loading....</p>
     <p v-else-if="$fetchState.error">
       Error Loading... {{ $fetchState.error }}
     </p>
     <div class="feed-grid" v-else>
       <article
-        v-for="(news, index) in this.newfeed.rss.channel.item.slice(0, 7)"
+        v-for="(news, index) in this.newfeed.channel.item.slice(0, 7)"
         :key="index"
       >
         <a :href="news.link" target="_blank"></a>
-        <figure v-if="news.enclosure.$.url != null">
-          <img :src="news.enclosure.$.url" />
+        <figure v-if="news.lead != null">
+          <img :src="news.lead" />
         </figure>
         <div class="feedtext">
           <span>The Star : News Feed</span>
@@ -30,6 +30,7 @@
 export default {
   data: () => ({
     newfeed: [],
+    attribute: "@attributes",
   }),
   activated() {
     // Call fetch again if last fetch more than 30 sec ago
@@ -44,7 +45,7 @@ export default {
   },
   async fetch() {
     this.newfeed = await fetch(
-      "https://v1.nocodeapi.com/tyhisaac2/xml_to_json/RKCIAmhpuTcOwyrP?url=https://www.thestar.com.my/rss/News"
+      "https://malaysia-covid-stat.herokuapp.com/api/news"
     ).then((res) => res.json());
   },
   fetchOnServer: false,
