@@ -1,7 +1,11 @@
 <template>
   <div class="feeds" keep-alive>
     <h3>Top News</h3>
-    <p v-if="$fetchState.pending">Loading....</p>
+    <div class="last-update" v-if="$fetchState.pending">
+      <div class="loading">
+        <div class="fake-effect"></div>
+      </div>
+    </div>
     <p v-else-if="$fetchState.error">
       Error Loading... {{ $fetchState.error }}
     </p>

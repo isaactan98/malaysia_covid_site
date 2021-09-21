@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\StateFlagController;
+use App\Http\Controllers\VaccineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,5 +43,13 @@ Route::get('/api/news', [CaseController::class, 'newsfeed'], function () {
 });
 
 Route::get('/api/{state}/flag', [StateFlagController::class, 'stateflags'], function () {
+    return response();
+});
+
+Route::get('/api/vaccine/all', [VaccineController::class, 'showtotal'], function () {
+    return response();
+});
+
+Route::get('/api/vaccine/state/{date}', [VaccineController::class, 'showState'], function () {
     return response();
 });

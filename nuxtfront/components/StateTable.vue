@@ -3,7 +3,11 @@
     <h3>States</h3>
     <div class="state-content">
       <div class="table-wrap">
-        <p v-if="$fetchState.pending">Loading....</p>
+        <div class="last-update" v-if="$fetchState.pending">
+          <div class="loading">
+            <div class="fake-effect"></div>
+          </div>
+        </div>
         <table v-else>
           <thead>
             <tr>
@@ -39,7 +43,7 @@
       <div class="state-foot">
         <div>
           *The number of new cases reported for the most recent day of complete
-          data, within the last 24 hours
+          data, within the last 24 hours.
         </div>
       </div>
     </div>
@@ -58,7 +62,6 @@ export default {
     refresh() {
       this.$fetch();
     },
-    stateFlag(state) {},
   },
   activated() {
     // Call fetch again if last fetch more than 30 sec ago

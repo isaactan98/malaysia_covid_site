@@ -18,11 +18,11 @@
         </vs-button>
       </template>
       <template #right>
-        <vs-navbar-item :active="active == 'guide'" id="guide">
+        <vs-navbar-item :active="active == 'guide'" id="guide" to="/">
           Home
         </vs-navbar-item>
-        <vs-navbar-item :active="active == 'docs'" id="docs">
-          Documents
+        <vs-navbar-item :active="active == 'docs'" id="docs" to="/about">
+          About
         </vs-navbar-item>
         <vs-navbar-item :active="active == 'components'" id="components">
           Components
@@ -36,17 +36,17 @@
       <template #logo>
         <!-- ...img logo -->
       </template>
-      <vs-sidebar-item id="guide">
+      <vs-sidebar-item id="guide" to="/">
         <template #icon>
           <i class="bx bx-home"></i>
         </template>
         Home
       </vs-sidebar-item>
-      <vs-sidebar-item id="market">
+      <vs-sidebar-item id="docs" to="/about">
         <template #icon>
           <i class="bx bx-grid-alt"></i>
         </template>
-        Market Overview
+        About
       </vs-sidebar-item>
       <vs-sidebar-item id="Music">
         <template #icon>

@@ -6,10 +6,15 @@
         <!-- 1st -->
         <div class="main-content">
           <h3>Malaysia</h3>
-          <p v-if="$fetchState.pending">Loading....</p>
-          <div class="w-content" v-else>
+
+          <div class="w-content">
             <div class="mb-16">
-              <div class="d-grid">
+              <div class="last-update" v-if="$fetchState.pending">
+                <div class="loading">
+                  <div class="fake-effect"></div>
+                </div>
+              </div>
+              <div class="d-grid" v-else>
                 <!-- New Cases -->
                 <div class="c-content">
                   <div class="content-title">New Cases</div>
@@ -72,28 +77,39 @@
             </div>
             <div class="bt-b1"></div>
             <div class="mb-16">
-              <div class="d-grid">
+              <div class="last-update" v-if="$fetchState.pending">
+                <div class="loading">
+                  <div class="fake-effect"></div>
+                </div>
+              </div>
+              <div class="d-grid" v-else>
                 <!-- New Cases -->
                 <div class="c-content">
-                  <div class="content-title">New Cases</div>
-                  <div class="content-text">-</div>
+                  <div class="content-title">Daily Dose</div>
+                  <div class="content-text">
+                    {{ vaccine[vaccine.length - 1].daily }}
+                  </div>
                 </div>
                 <!-- Recovered -->
                 <div class="c-content">
-                  <div class="content-title">New Cases</div>
-                  <div class="content-text">-</div>
+                  <div class="content-title">Fully Vacc.</div>
+                  <div class="content-text">
+                    {{ vaccine[vaccine.length - 1].daily_full }}
+                  </div>
                 </div>
                 <!-- Death -->
                 <div class="c-content">
-                  <div class="content-title">New Cases</div>
-                  <div class="content-text">-</div>
+                  <div class="content-title">Partially Vacc.</div>
+                  <div class="content-text">
+                    {{ vaccine[vaccine.length - 1].daily_partial }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div>
             <div class="font-xs">
-              cases reported in the 24h since the last report (except for 16th
+              *Cases reported in the 24h since the last report (except for 16th
               March 2020, for which the data is cumulative)
             </div>
             <span></span>
@@ -123,6 +139,7 @@ export default {
   data: () => ({
     dataset: [],
     death: [],
+    vaccine: [],
   }),
   activated() {
     // Call fetch again if last fetch more than 30 sec ago
@@ -141,6 +158,9 @@ export default {
     ).then((res) => res.json());
     this.death = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/death"
+    ).then((res) => res.json());
+    this.vaccine = await fetch(
+      "https://malaysia-covid-stat.herokuapp.com/api/vaccine/all"
     ).then((res) => res.json());
   },
   fetchOnServer: false,

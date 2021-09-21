@@ -43,7 +43,7 @@ export default {
     FootVue,
   },
   data: () => ({
-    active: "docs",
+    active: "guide",
   }),
   activated() {
     // Call fetch again if last fetch more than 30 sec ago
@@ -57,24 +57,6 @@ export default {
       window.location.reload;
     },
   },
-  async fetch() {
-    this.dataset = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/cases"
-    ).then((res) => res.json());
-
-    this.dataset1 = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/state/" +
-        this.dataset[this.dataset.length - 1].date
-    ).then((res) => res.json());
-
-    this.death1 = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/death/state/" +
-        this.dataset[this.dataset.length - 1].date
-    ).then((res) => res.json());
-    this.newfeed = await fetch(
-      "https://v1.nocodeapi.com/tyhisaac2/xml_to_json/RKCIAmhpuTcOwyrP?url=https://www.thestar.com.my/rss/News"
-    ).then((res) => res.json());
-  },
   fetchOnServer: false,
 };
 </script>
@@ -82,5 +64,94 @@ export default {
 <style>
 * {
   font-family: "Montserrat", sans-serif;
+}
+/* Loading animation */
+.loading {
+  position: relative;
+  background: #f6f7f8 no-repeat 80px 10px;
+  background-size: 100%;
+  background-image: -webkit-gradient(
+    linear,
+    0% 50%,
+    100% 50%,
+    color-stop(0%, #f6f7f8),
+    color-stop(20%, #edeef1),
+    color-stop(40%, #f6f7f8),
+    color-stop(100%, #f6f7f8)
+  );
+  background-image: -moz-linear-gradient(
+    left,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-image: -webkit-linear-gradient(
+    left,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-image: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  height: 30px;
+  width: 250px;
+  border-radius: 10px;
+  -moz-animation: anim 1s forwards infinite linear;
+  -webkit-animation: anim 1s forwards infinite linear;
+  animation: anim 1s forwards infinite linear;
+}
+.fake-effect {
+  position: absolute;
+  background: #fff;
+  right: 0;
+  left: 0;
+  height: 6px;
+}
+@keyframes anim {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+@-o-keyframes anim {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+@-ms-keyframes anim {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+@-moz-keyframes anim {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+@-webkit-keyframes anim {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
 }
 </style>

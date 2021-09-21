@@ -7,7 +7,11 @@
           The unofficial Malaysia government website for data and insights on
           COVID-19.
         </p>
-        <p class="last-update" v-if="$fetchState.pending">Loading....</p>
+        <div class="last-update" v-if="$fetchState.pending">
+          <div class="loading">
+            <div class="fake-effect"></div>
+          </div>
+        </div>
         <p class="last-update" v-else>
           Last Update: {{ dataset[dataset.length - 1].date }}
           <span>

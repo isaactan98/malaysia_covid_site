@@ -25,8 +25,10 @@
           >
         </div>
         <div class="footer-text">
-          A collaboration between MoH Malaysia and the
-          <a href="http://isaactan.website" class=""> open data community </a>
+          This is a self develop project from
+          <a href="http://isaactan.website" target="_blank" class="">
+            Isaac Tan
+          </a>. 
         </div>
       </div>
     </div>
@@ -57,5 +59,6 @@ export default {};
 }
 .footer-text > a {
   text-decoration: underline;
+  color: #000;
 }
 </style>
