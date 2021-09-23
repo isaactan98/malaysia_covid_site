@@ -101,7 +101,7 @@ export default {
     #f6f7f8 100%
   );
   height: 30px;
-  width: 250px;
+  width: 80%;
   border-radius: 10px;
   -moz-animation: anim 1s forwards infinite linear;
   -webkit-animation: anim 1s forwards infinite linear;

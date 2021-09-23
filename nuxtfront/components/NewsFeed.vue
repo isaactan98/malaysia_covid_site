@@ -168,4 +168,16 @@ article > .feedtime {
   flex-wrap: wrap;
   font-size: 0.75rem;
 }
+
+@media screen and (max-width: 700px) {
+  article > h4 {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  article > h4 {
+    font-size: 0.8rem;
+  }
+}
 </style>

@@ -32,9 +32,9 @@
                   {{ states.state }}
                 </div>
               </td>
-              <td>{{ states.cases_new }}</td>
+              <td>{{ Number(states.cases_new).toLocaleString() }}</td>
               <td>{{ states.cases_import }}</td>
-              <td>{{ states.cases_recovered }}</td>
+              <td>{{ Number(states.cases_recovered).toLocaleString() }}</td>
               <td>{{ death1[index].deaths_new }}</td>
             </tr>
           </tbody>

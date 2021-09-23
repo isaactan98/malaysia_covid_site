@@ -19,7 +19,11 @@
                 <div class="c-content">
                   <div class="content-title">New Cases</div>
                   <div class="content-text">
-                    {{ dataset[dataset.length - 1].cases_new }}
+                    {{
+                      Number(
+                        dataset[dataset.length - 1].cases_new
+                      ).toLocaleString()
+                    }}
                     <span
                       v-if="
                         dataset[dataset.length - 1].cases_new >
@@ -37,7 +41,11 @@
                 <div class="c-content">
                   <div class="content-title">Recovered</div>
                   <div class="content-text">
-                    {{ dataset[dataset.length - 1].cases_recovered }}
+                    {{
+                      Number(
+                        dataset[dataset.length - 1].cases_recovered
+                      ).toLocaleString()
+                    }}
                     <span>
                       <i
                         class="fa fa-angle-double-up good"
@@ -59,7 +67,11 @@
                 <div class="c-content">
                   <div class="content-title">Death</div>
                   <div class="content-text">
-                    {{ death[death.length - 1].deaths_new }}
+                    {{
+                      Number(
+                        death[death.length - 1].deaths_new
+                      ).toLocaleString()
+                    }}
                     <span
                       v-if="
                         death[death.length - 1].deaths_new >
@@ -87,21 +99,31 @@
                 <div class="c-content">
                   <div class="content-title">Daily Dose</div>
                   <div class="content-text">
-                    {{ vaccine[vaccine.length - 1].daily }}
+                    {{
+                      Number(vaccine[vaccine.length - 1].daily).toLocaleString()
+                    }}
                   </div>
                 </div>
                 <!-- Recovered -->
                 <div class="c-content">
                   <div class="content-title">Fully Vacc.</div>
                   <div class="content-text">
-                    {{ vaccine[vaccine.length - 1].daily_full }}
+                    {{
+                      Number(
+                        vaccine[vaccine.length - 1].daily_full
+                      ).toLocaleString()
+                    }}
                   </div>
                 </div>
                 <!-- Death -->
                 <div class="c-content">
                   <div class="content-title">Partially Vacc.</div>
                   <div class="content-text">
-                    {{ vaccine[vaccine.length - 1].daily_partial }}
+                    {{
+                      Number(
+                        vaccine[vaccine.length - 1].daily_partial
+                      ).toLocaleString()
+                    }}
                   </div>
                 </div>
               </div>
@@ -116,6 +138,7 @@
           </div>
         </div>
         <div>
+          <vaccine-chart />
           <state-table />
         </div>
         <div></div>
@@ -131,10 +154,12 @@
 <script>
 import NewsFeed from "./NewsFeed.vue";
 import StateTable from "./StateTable.vue";
+import VaccineChart from "./VaccineChart.vue";
 export default {
   components: {
     NewsFeed,
     StateTable,
+    VaccineChart,
   },
   data: () => ({
     dataset: [],
@@ -276,6 +301,9 @@ export default {
   }
   .right-grid {
     grid-column: span 12;
+  }
+  .content-text {
+    font-size: 20px;
   }
 }
 </style>
