@@ -28,11 +28,27 @@
           <div>{{ totalvacc.toLocaleString() }}</div>
         </div>
         <div class="dose-given">
-          <div>Fully Vacc</div>
+          <div>Today Fully Vacc</div>
+          <div>
+            {{
+              Number(vaccine[vaccine.length - 1].daily_full).toLocaleString()
+            }}
+          </div>
+        </div>
+        <div class="dose-given">
+          <div>Total Fully Vacc</div>
           <div>{{ fullyvac.toLocaleString() }}</div>
         </div>
         <div class="dose-given">
-          <div>Partially Vacc</div>
+          <div>Today Partially Vacc</div>
+          <div>
+            {{
+              Number(vaccine[vaccine.length - 1].daily_partial).toLocaleString()
+            }}
+          </div>
+        </div>
+        <div class="dose-given">
+          <div>Total Partially Vacc</div>
           <div>{{ parTotal.toLocaleString() }}</div>
         </div>
       </div>
@@ -57,8 +73,6 @@ import ChartFile from "./ChartFile.vue";
 export default {
   components: { ChartFile },
   data: () => ({
-    dataset: [],
-    death: [],
     vaccine: [],
     datacollection: null,
     calTotal: 0,
@@ -66,12 +80,6 @@ export default {
     loaded: false,
   }),
   async fetch() {
-    this.dataset = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/cases"
-    ).then((res) => res.json());
-    this.death = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/death"
-    ).then((res) => res.json());
     this.vaccine = await fetch(
       "https://malaysia-covid-stat.herokuapp.com/api/vaccine/all"
     ).then((res) => res.json());
@@ -113,23 +121,6 @@ export default {
         ],
       };
       return this.datacollection;
-    },
-  },
-  mounted() {
-    this.fillData();
-  },
-  methods: {
-    fillData() {
-      this.datacollection = {
-        labels: ["Fully Vaccinated", "1 Dose", "Unvaccinated"],
-        datasets: [
-          {
-            label: "",
-            data: [this.calTotal, this.partTotal, 100 - this.partTotal],
-            backgroundColor: ["#337958", "#60d49a", "#e5e7eb"],
-          },
-        ],
-      };
     },
   },
 };
@@ -220,7 +211,7 @@ export default {
     margin: auto;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .dose-given > div:first-child {
     font-size: 0.775rem;
   }

@@ -24,9 +24,6 @@
         <vs-navbar-item :active="active == 'docs'" id="docs" to="/about">
           About
         </vs-navbar-item>
-        <vs-navbar-item :active="active == 'components'" id="components">
-          Components
-        </vs-navbar-item>
       </template>
     </vs-navbar>
 
@@ -47,12 +44,6 @@
           <i class="bx bx-grid-alt"></i>
         </template>
         About
-      </vs-sidebar-item>
-      <vs-sidebar-item id="Music">
-        <template #icon>
-          <i class="bx bxs-music"></i>
-        </template>
-        Music
       </vs-sidebar-item>
       <template #footer>
         <vs-row justify="space-between">

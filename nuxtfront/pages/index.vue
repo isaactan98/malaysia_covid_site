@@ -13,7 +13,12 @@
           </div>
         </div>
         <p class="last-update" v-else>
-          Last Update: {{ dataset[dataset.length - 1].date }}
+          Last Update:
+          {{
+            new Date(dataset[dataset.length - 1].date)
+              .toGMTString()
+              .slice(0, 16)
+          }}
           <span>
             <vs-button @click="refresh" color="dark" transparent>
               <i class="fa">&#xf021;</i>
