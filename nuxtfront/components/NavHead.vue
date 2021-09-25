@@ -24,6 +24,9 @@
         <vs-navbar-item :active="active == 'docs'" id="docs" to="/about">
           About
         </vs-navbar-item>
+        <vs-navbar-item :active="active == 'iz'" id="iz" href="http://isaactan.website/">
+          Isaac Tan
+        </vs-navbar-item>
       </template>
     </vs-navbar>
 

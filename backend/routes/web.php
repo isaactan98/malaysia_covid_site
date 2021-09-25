@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CaseController;
+use App\Http\Controllers\NewsFeedController;
 use App\Http\Controllers\StateFlagController;
 use App\Http\Controllers\VaccineController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,10 @@ Route::get('/api/state/{date}', [CaseController::class, 'filterdate'], function 
     return response();
 });
 
+Route::get('/api/{state}/cases', [CaseController::class, 'filterstate'], function () {
+    return response();
+});
+
 Route::get('/api/death', [CaseController::class, 'death'],  function () {
     return response();
 });
@@ -38,7 +43,11 @@ Route::get('/api/death/state/{date}', [CaseController::class, 'deathstate'],  fu
     return response();
 });
 
-Route::get('/api/news', [CaseController::class, 'newsfeed'], function () {
+Route::get('/api/death/{state}', [CaseController::class, 'deathbystate'],  function () {
+    return response();
+});
+
+Route::get('/api/news', [NewsFeedController::class, 'newsfeed'], function () {
     return response();
 });
 
@@ -51,5 +60,9 @@ Route::get('/api/vaccine/all', [VaccineController::class, 'showtotal'], function
 });
 
 Route::get('/api/vaccine/state/{date}', [VaccineController::class, 'showState'], function () {
+    return response();
+});
+
+Route::get('/api/vaccine/{state}', [VaccineController::class, 'showbyState'], function () {
     return response();
 });

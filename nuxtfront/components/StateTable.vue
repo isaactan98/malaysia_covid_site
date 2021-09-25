@@ -29,7 +29,9 @@
                       '/flag'
                     "
                   />
-                  {{ states.state }}
+                  <nuxt-link :to="'/state/' + states.state">
+                    {{ states.state }}
+                  </nuxt-link>
                 </div>
               </td>
               <td>{{ Number(states.cases_new).toLocaleString() }}</td>
@@ -170,6 +172,15 @@ tbody > tr > td {
 
 .statename {
   display: flex;
+}
+
+.statename > a {
+  color: #727272;
+  text-decoration: none;
+}
+
+.statename > a:hover {
+  text-decoration: underline;
 }
 
 .statename > img {

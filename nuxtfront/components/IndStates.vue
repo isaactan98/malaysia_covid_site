@@ -13,6 +13,7 @@
               v-for="(state, index) in dataset1"
               :key="index"
               @click="handleClick"
+              :to="'/state/' + state.state"
             >
               <template #title>
                 <h3>{{ state.state }}</h3>
