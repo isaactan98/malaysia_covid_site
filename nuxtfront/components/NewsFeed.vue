@@ -12,11 +12,11 @@
     </p>
     <div class="feed-grid" v-else>
       <article
-        v-for="(news, index) in this.newfeed.channel.item.slice(0, 7)"
+        v-for="(news, index) in this.newfeed.channel.item.slice(0, 8)"
         :key="index"
       >
         <a :href="news.link" target="_blank"></a>
-        <figure v-if="news.lead != null">
+        <figure v-if="checkURL(String(news.lead)) != null">
           <img :src="news.lead" />
         </figure>
         <div class="feedtext">
@@ -46,6 +46,16 @@ export default {
   methods: {
     refresh() {
       this.$fetch();
+    },
+    checkURL(link) {
+      if (
+        link.indexOf("                    http://") == 0 ||
+        link.indexOf("                    https://") == 0
+      ) {
+        return link;
+      } else {
+        return null;
+      }
     },
     timeSince(date) {
       var seconds = Math.floor((new Date() - date) / 1000);

@@ -286,6 +286,19 @@ main {
   display: grid;
   max-width: 100%;
   padding: 10px;
+  margin: auto;
+}
+@media screen and (max-width: 1000px) {
+  .statetitle > div {
+    font-size: 0.75rem;
+  }
+  .statechart {
+    padding: 00.5rem !important;
+  }
+  #bar-chart {
+    height: 310px !important;
+    width: 310px !important;
+  }
 }
 @media screen and (max-width: 700px) {
   .statetitle > div {
@@ -293,6 +306,7 @@ main {
   }
   .statechart {
     grid-column: span 12 / span 12;
+    padding: 00.5rem !important;
   }
 
   .goals {
@@ -300,8 +314,8 @@ main {
   }
 
   #bar-chart {
-    height: 310px !important;
-    width: 310px !important;
+    height: 300px !important;
+    width: 300px !important;
   }
 }
 </style>

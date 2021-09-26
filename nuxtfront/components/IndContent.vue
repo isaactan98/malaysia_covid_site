@@ -139,6 +139,7 @@
         </div>
         <div>
           <vaccine-chart />
+          <percent-vacc />
           <state-table />
         </div>
         <div></div>
@@ -153,6 +154,7 @@
 
 <script>
 import NewsFeed from "./NewsFeed.vue";
+import PercentVacc from "./PercentVacc.vue";
 import StateTable from "./StateTable.vue";
 import VaccineChart from "./VaccineChart.vue";
 export default {
@@ -160,6 +162,7 @@ export default {
     NewsFeed,
     StateTable,
     VaccineChart,
+    PercentVacc,
   },
   data: () => ({
     dataset: [],
