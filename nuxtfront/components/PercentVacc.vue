@@ -57,6 +57,7 @@ export default {
       "https://malaysia-covid-stat.herokuapp.com/api/vaccine/all"
     ).then((res) => res.json());
   },
+  fetchOnServer: false,
   computed: {
     oneDoseP: function () {
       this.totalpart = this.vaccine
