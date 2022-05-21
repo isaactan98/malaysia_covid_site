@@ -67,6 +67,7 @@ export default {
   margin: auto;
   min-height: 400px;
   overflow: auto;
+  min-height: 100vh;
 }
 .header-page {
   display: grid;
