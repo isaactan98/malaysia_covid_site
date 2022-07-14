@@ -24,9 +24,9 @@
         <vs-navbar-item :active="active == 'docs'" id="docs" to="/about">
           About
         </vs-navbar-item>
-        <vs-navbar-item :active="active == 'iz'" id="iz" href="http://isaactan.website/">
+        <a href="https://portfolio-isaactan98.vercel.app/" class="vs-navbar__item" target="_blank">
           Isaac Tan
-        </vs-navbar-item>
+        </a>
       </template>
     </vs-navbar>
 
