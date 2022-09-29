@@ -24,7 +24,11 @@
         <vs-navbar-item :active="active == 'docs'" id="docs" to="/about">
           About
         </vs-navbar-item>
-        <a href="https://portfolio-isaactan98.vercel.app/" class="vs-navbar__item" target="_blank">
+        <a
+          href="https://isaactan.vercel.app/"
+          class="vs-navbar__item"
+          target="_blank"
+        >
           Isaac Tan
         </a>
       </template>
@@ -64,15 +68,13 @@
   </header>
 </template>
 
-
 <script>
 export default {
   data: () => ({
     active: "guide",
-    activeSidebar: false,
-  }),
+    activeSidebar: false
+  })
 };
 </script>
 
-<style>
-</style>
+<style></style>
