@@ -15,9 +15,9 @@
         <p class="last-update" v-else>
           Last Update:
           {{
-            new Date(dataset[dataset.length - 1].date)
-              .toGMTString()
-              .slice(0, 16)
+          new Date(dataset[dataset.length - 1].date)
+          .toGMTString()
+          .slice(0, 16)
           }}
           <span>
             <vs-button @click="refresh" color="dark" transparent>
@@ -55,7 +55,7 @@ export default {
   },
   async fetch() {
     this.dataset = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/cases"
+      "https://malaysiacovidsite.up.railway.app/api/cases"
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -72,6 +72,7 @@ export default {
   min-height: 400px;
   overflow: auto;
 }
+
 .header-page {
   display: grid;
   margin-bottom: 0.5rem;
@@ -79,19 +80,23 @@ export default {
   grid-template-columns: 1fr auto;
   align-items: flex-end;
 }
+
 .header__content {
   margin-top: 5rem;
 }
+
 .head-title {
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.5rem;
 }
+
 .last-update {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
-span > button {
+
+span>button {
   padding: 1px;
   border-width: 1px;
   border-radius: 0.25rem;
@@ -100,7 +105,8 @@ span > button {
   border: rgba(209, 213, 219);
   display: inline-block !important;
 }
-span > button > i {
+
+span>button>i {
   display: block;
   font-size: 18px;
   color: #5f6368;

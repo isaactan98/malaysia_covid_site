@@ -20,16 +20,14 @@
                   <div class="content-title">New Cases</div>
                   <div class="content-text">
                     {{
-                      Number(
-                        dataset[dataset.length - 1].cases_new
-                      ).toLocaleString()
+                    Number(
+                    dataset[dataset.length - 1].cases_new
+                    ).toLocaleString()
                     }}
-                    <span
-                      v-if="
-                        dataset[dataset.length - 1].cases_new >
-                        dataset[dataset.length - 2].cases_new
-                      "
-                    >
+                    <span v-if="
+                      dataset[dataset.length - 1].cases_new >
+                      dataset[dataset.length - 2].cases_new
+                    ">
                       <i class="fa fa-angle-double-up" aria-hidden="true"></i>
                     </span>
                     <span v-else>
@@ -42,24 +40,16 @@
                   <div class="content-title">Recovered</div>
                   <div class="content-text">
                     {{
-                      Number(
-                        dataset[dataset.length - 1].cases_recovered
-                      ).toLocaleString()
+                    Number(
+                    dataset[dataset.length - 1].cases_recovered
+                    ).toLocaleString()
                     }}
                     <span>
-                      <i
-                        class="fa fa-angle-double-up good"
-                        aria-hidden="true"
-                        v-if="
-                          dataset[dataset.length - 1].cases_recovered >
-                          dataset[dataset.length - 2].cases_recovered
-                        "
-                      ></i>
-                      <i
-                        class="fa fa-angle-double-down bad"
-                        aria-hidden="true"
-                        v-else
-                      ></i>
+                      <i class="fa fa-angle-double-up good" aria-hidden="true" v-if="
+                        dataset[dataset.length - 1].cases_recovered >
+                        dataset[dataset.length - 2].cases_recovered
+                      "></i>
+                      <i class="fa fa-angle-double-down bad" aria-hidden="true" v-else></i>
                     </span>
                   </div>
                 </div>
@@ -68,16 +58,14 @@
                   <div class="content-title">Death</div>
                   <div class="content-text">
                     {{
-                      Number(
-                        death[death.length - 1].deaths_new
-                      ).toLocaleString()
+                    Number(
+                    death[death.length - 1].deaths_new
+                    ).toLocaleString()
                     }}
-                    <span
-                      v-if="
-                        death[death.length - 1].deaths_new >
-                        death[death.length - 2].deaths_new
-                      "
-                    >
+                    <span v-if="
+                      death[death.length - 1].deaths_new >
+                      death[death.length - 2].deaths_new
+                    ">
                       <i class="fa fa-angle-double-up" aria-hidden="true"></i>
                     </span>
                     <span v-else>
@@ -100,7 +88,7 @@
                   <div class="content-title">Daily Dose</div>
                   <div class="content-text">
                     {{
-                      Number(vaccine[vaccine.length - 1].daily).toLocaleString()
+                    Number(vaccine[vaccine.length - 1].daily).toLocaleString()
                     }}
                   </div>
                 </div>
@@ -109,9 +97,9 @@
                   <div class="content-title">Fully Vacc.</div>
                   <div class="content-text">
                     {{
-                      Number(
-                        vaccine[vaccine.length - 1].daily_full
-                      ).toLocaleString()
+                    Number(
+                    vaccine[vaccine.length - 1].daily_full
+                    ).toLocaleString()
                     }}
                   </div>
                 </div>
@@ -120,9 +108,9 @@
                   <div class="content-title">Partially Vacc.</div>
                   <div class="content-text">
                     {{
-                      Number(
-                        vaccine[vaccine.length - 1].daily_partial
-                      ).toLocaleString()
+                    Number(
+                    vaccine[vaccine.length - 1].daily_partial
+                    ).toLocaleString()
                     }}
                   </div>
                 </div>
@@ -181,14 +169,16 @@ export default {
     },
   },
   async fetch() {
+    let url = "https://malaysiacovidsite.up.railway.app/";
+
     this.dataset = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/cases"
+      url + "api/cases"
     ).then((res) => res.json());
     this.death = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/death"
+      url + "api/death"
     ).then((res) => res.json());
     this.vaccine = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/vaccine/all"
+      url + "api/vaccine/all"
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -199,30 +189,38 @@ export default {
 .fa {
   font-size: 20px !important;
 }
+
 .fa-angle-double-up {
   color: rgba(249, 115, 22);
 }
+
 .fa-angle-double-down {
   color: rgba(16, 185, 129);
 }
+
 .good {
   color: rgba(16, 185, 129) !important;
 }
+
 .bad {
   color: rgba(249, 115, 22) !important;
 }
+
 .grid100 {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-gap: 16px 32px;
   width: 100%;
 }
+
 .left-grid {
   grid-column: span 8;
 }
+
 .right-grid {
   grid-column: span 4;
 }
+
 .main-content {
   padding: 16px;
   border: 1px solid #dadce0;
@@ -231,12 +229,14 @@ export default {
   margin-bottom: 32px;
   background: #ffffff;
 }
+
 .bt-b1 {
   width: 100%;
   height: 0;
   border-top: 1px solid #dadce0;
   margin-bottom: 16px;
 }
+
 .w-content {
   display: flex;
   -webkit-box-orient: vertical;
@@ -254,17 +254,20 @@ export default {
   padding-left: 0;
   padding-right: 0;
 }
+
 .d-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 24px;
 }
+
 .c-content {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   position: relative;
 }
+
 .content-title {
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -274,6 +277,7 @@ export default {
   font-size: 0.75rem;
   line-height: 1.3;
 }
+
 .content-text {
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
@@ -281,10 +285,12 @@ export default {
   margin: 4px 0 8px;
   font-size: 26px;
 }
+
 .mb-16 {
   margin-bottom: 16px;
   width: 100%;
 }
+
 .font-xs {
   color: #5f6368;
   font-size: 0.75rem;
@@ -299,12 +305,15 @@ export default {
     padding: 0;
     grid-gap: 16px;
   }
+
   .left-grid {
     grid-column: span 12;
   }
+
   .right-grid {
     grid-column: span 12;
   }
+
   .content-text {
     font-size: 20px;
   }

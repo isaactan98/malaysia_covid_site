@@ -31,7 +31,7 @@
           <div>Today Fully Vacc</div>
           <div>
             {{
-              Number(vaccine[vaccine.length - 1].daily_full).toLocaleString()
+            Number(vaccine[vaccine.length - 1].daily_full).toLocaleString()
             }}
           </div>
         </div>
@@ -43,7 +43,7 @@
           <div>Today Partially Vacc</div>
           <div>
             {{
-              Number(vaccine[vaccine.length - 1].daily_partial).toLocaleString()
+            Number(vaccine[vaccine.length - 1].daily_partial).toLocaleString()
             }}
           </div>
         </div>
@@ -81,7 +81,7 @@ export default {
   }),
   async fetch() {
     this.vaccine = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/vaccine/all"
+      "https://malaysiacovidsite.up.railway.app/api/vaccine/all"
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -133,6 +133,7 @@ export default {
   display: grid;
   margin-bottom: 1rem;
 }
+
 .vaccination {
   color: rgba(107, 114, 128);
   letter-spacing: -0.05em;
@@ -141,6 +142,7 @@ export default {
   font-size: 0.875rem;
   grid-column: span 1 / span 1;
 }
+
 .date-vacc {
   color: rgba(107, 114, 128);
   letter-spacing: -0.05em;
@@ -149,6 +151,7 @@ export default {
   font-size: 0.75rem;
   grid-column: span 1 / span 1;
 }
+
 .ppl-vcc {
   line-height: 1.5rem;
   color: rgba(31, 41, 55);
@@ -157,12 +160,14 @@ export default {
   margin: 1rem 0;
   grid-column: 1/-1;
 }
+
 .vacc-details {
   display: grid;
   margin-top: 0.25rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
+
 .left-vacc {
   margin-top: auto;
   display: grid;
@@ -170,6 +175,7 @@ export default {
   gap: 0.75rem;
   row-gap: 1.5rem;
 }
+
 .right-vacc {
   gap: 0.75rem;
   align-items: flex-end;
@@ -178,16 +184,19 @@ export default {
   margin-left: auto;
   margin-top: auto;
 }
+
 .dose-given {
   gap: 0.25rem;
   display: grid;
 }
-.dose-given > div:first-child {
+
+.dose-given>div:first-child {
   color: rgba(31, 41, 55);
   line-height: 1rem;
   font-size: 0.875rem;
 }
-.dose-given > div:last-child {
+
+.dose-given>div:last-child {
   outline: 0;
   align-self: flex-end;
   position: relative;
@@ -206,16 +215,19 @@ export default {
   .left-vacc {
     grid-column: span 12;
   }
+
   .right-vacc {
     grid-column: span 12;
     margin: auto;
   }
 }
+
 @media screen and (max-width: 1000px) {
-  .dose-given > div:first-child {
+  .dose-given>div:first-child {
     font-size: 0.775rem;
   }
-  .dose-given > div:last-child {
+
+  .dose-given>div:last-child {
     font-size: 1rem;
   }
 }

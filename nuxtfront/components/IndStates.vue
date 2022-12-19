@@ -9,23 +9,16 @@
       <div class="example">
         <div>
           <vs-card-group>
-            <vs-card
-              v-for="(state, index) in dataset1"
-              :key="index"
-              @click="handleClick"
-              :to="'/state/' + state.state"
-            >
+            <vs-card v-for="(state, index) in dataset1" :key="index" @click="handleClick" :to="'/state/' + state.state">
               <template #title>
                 <h3>{{ state.state }}</h3>
               </template>
               <template #img>
-                <img
-                  :src="
-                    'https://malaysia-covid-stat.herokuapp.com/api/' +
-                    state.state +
-                    '/flag'
-                  "
-                />
+                <img :src="
+                  'https://malaysiacovidsite.up.railway.app/api/' +
+                  state.state +
+                  '/flag'
+                " />
               </template>
               <template #text>
                 <p>Cases: {{ state.cases_new }}</p>
@@ -45,7 +38,7 @@ export default {
     dataset1: [],
   }),
   methods: {
-    handleClick() {},
+    handleClick() { },
   },
   activated() {
     // Call fetch again if last fetch more than 30 sec ago
@@ -54,12 +47,14 @@ export default {
     }
   },
   async fetch() {
+    let url = "https://malaysiacovidsite.up.railway.app/";
+
     this.dataset = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/cases"
+      url + "api/cases"
     ).then((res) => res.json());
     this.dataset1 = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/state/" +
-        this.dataset[this.dataset.length - 1].date
+      url + "api/state/" +
+      this.dataset[this.dataset.length - 1].date
     ).then((res) => res.json());
   },
   fetchOnServer: false,

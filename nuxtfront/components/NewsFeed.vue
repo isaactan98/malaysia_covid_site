@@ -11,10 +11,7 @@
       Error Loading... {{ $fetchState.error }}
     </p>
     <div class="feed-grid" v-else>
-      <article
-        v-for="(news, index) in this.newfeed.channel.item.slice(0, 8)"
-        :key="index"
-      >
+      <article v-for="(news, index) in this.newfeed.channel.item.slice(0, 8)" :key="index">
         <a :href="news.link" target="_blank"></a>
         <figure v-if="checkURL(String(news.lead)) != null">
           <img :src="news.lead" />
@@ -86,7 +83,7 @@ export default {
   },
   async fetch() {
     this.newfeed = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/news"
+      "https://malaysiacovidsite.up.railway.app/api/news"
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -102,6 +99,7 @@ export default {
   margin-bottom: 32px;
   background: #ffffff;
 }
+
 .feed-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -109,7 +107,8 @@ export default {
   grid-column-gap: 0;
   margin-bottom: 32px;
 }
-.feed-grid > article {
+
+.feed-grid>article {
   display: grid;
   grid-template-rows: repeat(6, minmax(0px, auto));
   grid-column-gap: 0;
@@ -125,7 +124,8 @@ export default {
   color: #202124;
   vertical-align: top;
 }
-article > a {
+
+article>a {
   text-decoration: none;
   position: absolute;
   top: 0;
@@ -153,7 +153,7 @@ figure {
   padding: 0;
 }
 
-figure > img {
+figure>img {
   position: absolute;
   top: 0;
   right: 0;
@@ -168,7 +168,7 @@ figure > img {
   object-fit: cover;
 }
 
-article > .feedtext {
+article>.feedtext {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -182,14 +182,16 @@ article > .feedtext {
   color: inherit;
   vertical-align: middle;
 }
-article > h4 {
+
+article>h4 {
   font-size: 0.9375rem;
   margin-top: 8px;
   margin-bottom: 0;
   line-height: 1.4;
   grid-column: 1 / span 1;
 }
-article > .feedtime {
+
+article>.feedtime {
   grid-column: 1 / span 1;
   padding-top: 8px;
   display: flex;
@@ -207,13 +209,13 @@ article > .feedtime {
 }
 
 @media screen and (max-width: 700px) {
-  article > h4 {
+  article>h4 {
     font-size: 0.8rem;
   }
 }
 
 @media screen and (max-width: 960px) {
-  article > h4 {
+  article>h4 {
     font-size: 0.8rem;
   }
 }

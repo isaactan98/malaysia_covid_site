@@ -54,7 +54,7 @@ export default {
   }),
   async fetch() {
     this.vaccine = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/vaccine/all"
+      "https://malaysiacovidsite.up.railway.app/api/vaccine/all"
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -111,6 +111,7 @@ export default {
   display: grid;
   margin-bottom: 1rem;
 }
+
 .p-title {
   color: rgba(107, 114, 128);
   letter-spacing: -0.05em;
@@ -119,6 +120,7 @@ export default {
   font-size: 0.875rem;
   grid-column: span 1 / span 1;
 }
+
 .p-date {
   color: rgba(107, 114, 128);
   letter-spacing: -0.05em;
@@ -127,6 +129,7 @@ export default {
   font-size: 0.75rem;
   grid-column: span 1 / span 1;
 }
+
 .p-text {
   line-height: 1.5rem;
   color: rgba(31, 41, 55);
@@ -135,20 +138,24 @@ export default {
   margin: 1rem 0;
   grid-column: 1/-1;
 }
+
 .percentage-bar {
   display: grid;
 }
+
 .bar-wrap {
   display: grid;
   overflow-x: hidden;
   margin-bottom: auto;
 }
+
 .per-txt {
   display: grid;
   text-align: center;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
+
 .per-bar {
   position: relative;
   display: flex;
@@ -158,7 +165,7 @@ export default {
   margin: 1rem auto 1rem;
 }
 
-.per-txt > div:first-child {
+.per-txt>div:first-child {
   grid-column-start: 2;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
@@ -166,7 +173,7 @@ export default {
   display: grid;
 }
 
-.per-txt > div:last-child {
+.per-txt>div:last-child {
   grid-column-start: 3;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
@@ -174,34 +181,39 @@ export default {
   display: grid;
 }
 
-.per-txt > div > div {
+.per-txt>div>div {
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: rgba(31, 41, 55);
 }
-.per-txt > div > span {
+
+.per-txt>div>span {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
 }
 
 @media screen and (max-width: 700px) {
-  .per-txt > div > div {
+  .per-txt>div>div {
     font-size: 0.75rem;
   }
-  .per-txt > div > span {
+
+  .per-txt>div>span {
     font-size: 1rem;
   }
+
   #horizontalbar-chart {
     height: 300px !important;
     width: 300px !important;
   }
 }
+
 @media screen and (max-width: 1000px) {
-  .per-txt > div > div {
+  .per-txt>div>div {
     font-size: 0.8rem;
   }
-  .per-txt > div > span {
+
+  .per-txt>div>span {
     font-size: 1rem;
   }
 }

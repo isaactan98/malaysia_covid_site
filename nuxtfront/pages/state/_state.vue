@@ -22,9 +22,9 @@
             <div v-else>
               Data as of
               {{
-                new Date(statedetails[statedetails.length - 1].date)
-                  .toGMTString()
-                  .slice(0, 16)
+              new Date(statedetails[statedetails.length - 1].date)
+              .toGMTString()
+              .slice(0, 16)
               }}
             </div>
             <h3 class="card-title">COVID-19 Cases Tracker</h3>
@@ -41,9 +41,9 @@
                 <div>
                   +
                   {{
-                    Number(
-                      statedetails[statedetails.length - 1].cases_new
-                    ).toLocaleString()
+                  Number(
+                  statedetails[statedetails.length - 1].cases_new
+                  ).toLocaleString()
                   }}
                 </div>
               </div>
@@ -70,9 +70,9 @@
             <div v-else>
               Data as of
               {{
-                new Date(statedetails[statedetails.length - 1].date)
-                  .toGMTString()
-                  .slice(0, 16)
+              new Date(statedetails[statedetails.length - 1].date)
+              .toGMTString()
+              .slice(0, 16)
               }}
             </div>
             <h3 class="card-title">Vaccine Tracker</h3>
@@ -89,9 +89,9 @@
                 <div>
                   +
                   {{
-                    Number(
-                      vccDetails[vccDetails.length - 1].daily
-                    ).toLocaleString()
+                  Number(
+                  vccDetails[vccDetails.length - 1].daily
+                  ).toLocaleString()
                   }}
                 </div>
               </div>
@@ -135,13 +135,15 @@ export default {
     };
   },
   async fetch() {
+    let url = "https://malaysiacovidsite.up.railway.app/"
+
     this.statedetails = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/" +
-        this.stateName +
-        "/cases"
+      url + "api/" +
+      this.stateName +
+      "/cases"
     ).then((res) => res.json());
     this.vccDetails = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/vaccine/" + this.stateName
+      url + "api/vaccine/" + this.stateName
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -202,6 +204,7 @@ export default {
 .hidden {
   display: none;
 }
+
 main {
   position: relative;
   z-index: 0;
@@ -211,12 +214,14 @@ main {
   min-height: 400px;
   overflow: auto;
 }
+
 .main {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 0.5rem;
   width: 100%;
 }
+
 .statechart {
   grid-template-rows: auto 1fr;
   padding: 1rem;
@@ -246,9 +251,10 @@ main {
   gap: 0.125rem;
 }
 
-.statetitle > div {
+.statetitle>div {
   font-size: 0.875rem;
 }
+
 .card-title {
   line-height: 1.5rem;
   color: rgba(31, 41, 55);
@@ -263,12 +269,13 @@ main {
   flex-direction: column;
 }
 
-.flex-column > div:first-child {
+.flex-column>div:first-child {
   font-size: 0.875rem;
   line-height: 1.25rem;
   flex: 1 1 0%;
 }
-.flex-column > div:last-child {
+
+.flex-column>div:last-child {
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
@@ -278,32 +285,39 @@ main {
   display: grid;
   margin-top: 0.25rem;
 }
+
 .chartwrap {
   gap: 1.5rem;
   display: grid;
 }
+
 .chart-height {
   display: grid;
   max-width: 100%;
   padding: 10px;
   margin: auto;
 }
+
 @media screen and (max-width: 1000px) {
-  .statetitle > div {
+  .statetitle>div {
     font-size: 0.75rem;
   }
+
   .statechart {
     padding: 00.5rem !important;
   }
+
   #bar-chart {
     height: 310px !important;
     width: 310px !important;
   }
 }
+
 @media screen and (max-width: 700px) {
-  .statetitle > div {
+  .statetitle>div {
     font-size: 0.75rem;
   }
+
   .statechart {
     grid-column: span 12 / span 12;
     padding: 00.5rem !important;

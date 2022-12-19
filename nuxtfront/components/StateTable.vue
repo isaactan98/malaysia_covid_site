@@ -22,13 +22,11 @@
             <tr v-for="(states, index) in dataset1" :key="index">
               <td>
                 <div class="statename">
-                  <img
-                    :src="
-                      'https://malaysia-covid-stat.herokuapp.com/api/' +
-                      states.state +
-                      '/flag'
-                    "
-                  />
+                  <img :src="
+                    'https://malaysiacovidsite.up.railway.app/api/' +
+                    states.state +
+                    '/flag'
+                  " />
                   <nuxt-link :to="'/state/' + states.state">
                     {{ states.state }}
                   </nuxt-link>
@@ -60,7 +58,7 @@ export default {
     death1: [],
   }),
   methods: {
-    handleClick() {},
+    handleClick() { },
     refresh() {
       this.$fetch();
     },
@@ -72,18 +70,20 @@ export default {
     }
   },
   async fetch() {
+    let url = "https://malaysiacovidsite.up.railway.app/";
+
     this.dataset = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/cases"
+      url + "api/cases"
     ).then((res) => res.json());
 
     this.dataset1 = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/state/" +
-        this.dataset[this.dataset.length - 1].date
+      url + "api/state/" +
+      this.dataset[this.dataset.length - 1].date
     ).then((res) => res.json());
 
     this.death1 = await fetch(
-      "https://malaysia-covid-stat.herokuapp.com/api/death/state/" +
-        this.dataset[this.dataset.length - 1].date
+      url + "api/death/state/" +
+      this.dataset[this.dataset.length - 1].date
     ).then((res) => res.json());
   },
   fetchOnServer: false,
@@ -99,6 +99,7 @@ export default {
   margin-bottom: 32px;
   background: #ffffff;
 }
+
 .state-content {
   display: -webkit-box;
   display: -webkit-flex;
@@ -108,22 +109,26 @@ export default {
   -webkit-flex-direction: column;
   flex-direction: column;
 }
+
 .table-wrap {
   overflow: auto;
   padding-right: 12px;
   max-height: 480px;
 }
-.table-wrap > table {
+
+.table-wrap>table {
   width: 100%;
   border-collapse: collapse;
   font-family: "Roboto", sans-serif;
 }
-thead > tr {
+
+thead>tr {
   border-bottom: 1px solid #e8eaed;
   position: relative;
   margin-right: 16px;
 }
-thead > tr > td:first-child {
+
+thead>tr>td:first-child {
   text-align: left;
   min-width: 175px;
   padding-left: 0;
@@ -137,7 +142,8 @@ thead > tr > td:first-child {
   top: 0;
   z-index: 1;
 }
-thead > tr > td {
+
+thead>tr>td {
   padding: 0 8px 12px 8px;
   text-align: right;
   font-weight: 400;
@@ -150,12 +156,14 @@ thead > tr > td {
   z-index: 1;
   width: 94px;
 }
-tbody > tr {
+
+tbody>tr {
   border-bottom: 1px solid #e8eaed;
   position: relative;
   margin-right: 16px;
 }
-tbody > tr > td:first-child {
+
+tbody>tr>td:first-child {
   text-align: left;
   min-width: 175px;
   padding-left: 0;
@@ -163,7 +171,8 @@ tbody > tr > td:first-child {
   font-size: 14px;
   padding: 12px 8px;
 }
-tbody > tr > td {
+
+tbody>tr>td {
   padding: 12px 8px;
   text-align: right;
   font-size: 14px;
@@ -174,16 +183,16 @@ tbody > tr > td {
   display: flex;
 }
 
-.statename > a {
+.statename>a {
   color: #727272;
   text-decoration: none;
 }
 
-.statename > a:hover {
+.statename>a:hover {
   text-decoration: underline;
 }
 
-.statename > img {
+.statename>img {
   height: 11px;
   width: 16px;
   margin-right: 12px;
@@ -195,7 +204,8 @@ tbody > tr > td {
   padding-top: 16px;
   line-height: 1.33;
 }
-.state-foot > div {
+
+.state-foot>div {
   font-size: 0.75rem;
   color: #5f6368;
   margin-bottom: 12px;
